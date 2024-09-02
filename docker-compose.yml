@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  dispersed-connection:
+    build: 
+      context: ./dispersedconnection
+    container_name: dispersed-connection
+    networks:
+      - dispersedconnection-network
+    ports:
+      - "80:80"
+    depends_on:
+      - melanoma-detector
+      - sleep-cycle-predictor
+
+  melanoma-detector:
+    build: 
+      context: ./skinDispersed
+    container_name: melanoma-detector-fastapi
+    networks:
+      - dispersedconnection-network
+    ports:
+      - "8001:8000"
+
+  sleep-cycle-predictor:
+    build: 
+      context: ./sleepQuality
+    container_name: sleep-cycle-predictor-fastapi
+    networks:
+      - dispersedconnection-network
+    ports:
+      - "8002:8002"
+
+networks:
+  dispersedconnection-network:
+    driver: bridge
+
