@@ -1,0 +1,5 @@
+Django==5.1
+gunicorn==21.2.0
+requests
+pandas==2.2.2
+joblib==1.4.2

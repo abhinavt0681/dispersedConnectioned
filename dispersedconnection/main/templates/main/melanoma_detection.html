@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Melanoma Detection - Dispersed Connection</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="{% static 'main/css/main.css' %}" />
+        <noscript><link rel="stylesheet" href="{% static 'main/css/noscript.css' %}" /></noscript>
+    </head>
+    <body class="is-preload">
+
+        <!-- Header -->
+         <!-- Header with Upload Section -->
+         <section id="header">
+            <div class="inner">
+                <h1><strong>Skin Cancer and Lesion Detector</strong></h1>
+                <p>Upload a photo of the skin patch, to find the type of skin cancer or lesion.</p>
+                <form id="uploadForm" method="post" enctype="multipart/form-data" action="{% url 'melanoma_detection' %}">
+                    {% csrf_token %}
+                    <div class="row gtr-uniform gtr-50">
+                        <div class="col-12">
+                            <input type="file" name="image" id="image" accept="image/*" required/>
+                        </div>
+                        <div class="col-12">
+                            <ul class="actions">
+                                <li><input type="submit" value="Submit" class="primary" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+                <div id="result" style="margin-top: 20px;"></div>
+            </div>
+        </section>
+
+        <!-- Model Explanation Section -->
+        <section id="model-explanation" class="main style1">
+            <div class="container">
+                <header class="major">
+                    <h2>About the Skin Condition Classifier</h2>
+                </header>
+                <h3>Training Data Size: <b>602 MiB</b> <span style="padding-left: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accuracy: <b>49.5%</b></span> </h3>
+                <h3>Testing Data Size: <b>232 MiB</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number of Diseases Classified: <b>9</b> </h3>
+                <h3>Training Data: <a href="https://challenge.isic-archive.com/data/"><b>ISIC labelled dataset</b></a></h3>
+                <h3>Training Hardware: <b>NVidia RTX 3070 TI Laptop GPU</b></h3>
+                <h3>Training environment & Libraries: <b>Ubuntu 22.04 LTS, Conda, CUDA 12.5, PyTorch</b></h3>
+                <h3>Deployed On <b> Ubuntu 22.04 Docker 27.1 Container With FastAPI On EC2 Instance</b></h3>
+                
+                <i>The model is being from its own docker container. <b>This website is designed with CI/CD framework, microservice architecture and modularity in mind.</b></i>
+                <p>
+                    This deep learning model was built using a pre-trained ResNet-18 architecture, which is fine-tuned to classify nine types of skin lesions. The model was trained on a modest dataset of 602 MiB with advanced data augmentation techniques to simulate real-world variations, such as random horizontal flipping, rotation, and resized cropping. Despite the small dataset size, the model achieved an accuracy of 49.5% on the test set.
+                </p>
+                
+                <p>
+                    The training and evaluation were performed on a machine running <b>Ubuntu</b> with an <b>NVIDIA RTX 3070 TI GPU</b> with CUDA version 12.4, which allowed efficient processing of images and faster training times. I model trained over 20 epochs using a combination of Adam optimizer and a learning rate scheduler, to improve the model performance from 37% accuracy to 49.5%.
+                </p>
+        
+                <p>
+                    The end user, ie, my customer is always in my mind when making my projects. In this case, you, the recruiter was on my mind, and my target wasn't just to make the model, but also make it very easy for you to use it to help you make judgements about me. I really hope I succeeded. 
+                </p>
+                
+                <p>
+                    So little details like, making it crystal clear to you about where to click, direct you, is all a part of UX design, and then writing this piece of HTML that you're reading, choosing the right font so its a pleasure to read, containerising and deploying this Django based Website, everything is done by me.
+                </p>
+            </div>
+        </section>
+
+
+
+        <section id="List of Skin Conditions Model can Classify" class="main style2">
+            <div class="container">
+                <header class="major">
+                    <h2><strong>Model Can Classify the Following Skin Diseases</strong></h2>
+                </header>
+                <div>
+                    <h2>Cancerous Conditions:</h2>
+                    <ul>
+                        <li><strong>Melanoma:</strong> A serious form of skin cancer that originates in the melanocytes, the cells that produce pigment.</li>
+                        <li><strong>Basal Cell Carcinoma:</strong> The most common type of skin cancer, arising from the basal cells in the epidermis.</li>
+                        <li><strong>Squamous Cell Carcinoma:</strong> A type of skin cancer that arises from squamous cells, which are flat cells in the outer part of the epidermis.</li>
+                    </ul>
+                
+                    <h2>Pre-cancerous Condition:</h2>
+                    <ul>
+                        <li><strong>Actinic Keratosis:</strong> A rough, scaly patch on the skin caused by years of sun exposure. It can sometimes progress to squamous cell carcinoma if left untreated.</li>
+                    </ul>
+                
+                    <h2>Benign (Non-cancerous) Conditions:</h2>
+                    <ul>
+                        <li><strong>Nevus (Mole):</strong> A benign growth of melanocytes, which can occasionally turn into melanoma but are generally non-cancerous.</li>
+                        <li><strong>Seborrheic Keratosis:</strong> A common non-cancerous skin growth that often appears in older adults. It has a waxy, wart-like appearance.</li>
+                        <li><strong>Dermatofibroma:</strong> A benign, fibrous skin nodule, often found on the lower legs.</li>
+                        <li><strong>Pigmented Benign Keratosis:</strong> Similar to seborrheic keratosis, it’s a benign skin growth that has a pigmented appearance.</li>
+                        <li><strong>Vascular Lesion:</strong> These are benign growths or anomalies of blood vessels, like hemangiomas, and are generally not cancerous.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Footer -->
+        <section id="footer">
+            <ul class="icons">
+                <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+                <li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+            </ul>
+            <ul class="copyright">
+                <li>&copy; Dispersed Connection</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </section>
+
+        <!-- Scripts -->
+        <script src="{% static 'main/js/jquery.min.js' %}"></script>
+        <script src="{% static 'main/js/jquery.scrolly.min.js' %}"></script>
+        <script src="{% static 'main/js/browser.min.js' %}"></script>
+        <script src="{% static 'main/js/breakpoints.min.js' %}"></script>
+        <script src="{% static 'main/js/util.js' %}"></script>
+        <script src="{% static 'main/js/main.js' %}"></script>
+
+        <!-- JavaScript to handle form submission and display results -->
+        <script>
+            document.getElementById('uploadForm').onsubmit = async function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const resultDiv = document.getElementById('result');
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.innerHTML = `<h2>Prediction: ${data.result}</h2>`;
+                } else {
+                    resultDiv.innerHTML = `<h2>Error: Could not process the image</h2>`;
+                }
+            }
+        </script>
+
+    </body>
+</html>

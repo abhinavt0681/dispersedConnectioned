@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Sleep Cycle Prediction - Dispersed Connection</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="{% static 'main/css/main.css' %}" />
+        <noscript><link rel="stylesheet" href="{% static 'main/css/noscript.css' %}" /></noscript>
+    </head>
+    <body class="is-preload">
+
+        <!-- Header -->
+        <section id="header">
+            <div class="inner">
+                <h1><strong>Sleep Cycle Prediction</strong></h1>
+                <p>Predict your sleep quality based on lifestyle inputs.</p>
+            </div>
+        </section>
+
+        <!-- Form Section with White Background -->
+        <section id="predictor-section" class="main style1">
+            <div class="container">
+                <header class="major">
+                    <h2>Enter Your Details</h2>
+                </header>
+                <form method="post" action="{% url 'sleep_cycle_prediction' %}">
+                    {% csrf_token %}
+                    <div class="row gtr-uniform gtr-50">
+                        <div class="col-6 col-12-small">
+                            <label for="age">Age</label>
+                            <input type="number" name="age" id="age" placeholder="Age" required />
+                        </div>
+                        <div class="col-6 col-12-small">
+                            <label for="gender">Gender</label>
+                            <select name="gender" id="gender" required>
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-6 col-12-small">
+                            <label for="occupation">Occupation</label>
+                            <select name="occupation" id="occupation" required>
+                                <option value="" disabled selected>Select Occupation</option>
+                                <option value="Engineer">Engineer</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Teacher">Teacher</option>
+                                <option value="Artist">Artist</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="col-6 col-12-small">
+                            <label for="bmi_category">BMI Category</label>
+                            <select name="bmi_category" id="bmi_category" required>
+                                <option value="" disabled selected>Select BMI Category</option>
+                                <option value="Underweight">Underweight</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Overweight">Overweight</option>
+                                <option value="Obese">Obese</option>
+                            </select>
+                        </div>
+                        <div class="col-6 col-12-small">
+                            <label for="sleep_disorder">Sleep Disorder</label>
+                            <select name="sleep_disorder" id="sleep_disorder" required>
+                                <option value="" disabled selected>Select Sleep Disorder</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="col-6 col-12-small">
+                            <label for="blood_pressure">Blood Pressure</label>
+                            <select name="blood_pressure" id="blood_pressure" required>
+                                <option value="" disabled selected>Select Blood Pressure</option>
+                                <option value="120/80">120/80</option>
+                                <option value="130/90">130/90</option>
+                                <option value="140/90">140/90</option>
+                                <option value="150/100">150/100</option>
+                                <option value="160/100">160/100</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <ul class="actions">
+                                <li><input type="submit" value="Predict Sleep Quality" class="primary" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+
+                {% if prediction %}
+                    <div>
+                        <h3><strong><span style="color: orangered;">Your Predicted Sleep Quality: {{ prediction }}</span></strong></h3>
+                    </div>
+                {% elif error %}
+                    <div>
+                        <h3 style="color: red;">{{ error }}</h3>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- Model Explanation Section -->
+        <section id="model-explanation" class="main style2">
+            <div class="container">
+                <header class="major">
+                    <h2>About the Sleep Cycle Prediction Model</h2>
+                </header>
+                <p>
+                    This model uses a Random Forest Regressor to predict the quality of sleep based on various lifestyle factors such as blood pressure, BMI category, and occupation. The model was trained on a dataset with multiple features, and it achieved a good balance of prediction accuracy.
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <section id="footer">
+            <ul class="icons">
+                <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook"></span></a></li>
+                <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram"></span></a></li>
+                <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub"></span></a></li>
+                <li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email"></span></a></li>
+            </ul>
+            <ul class="copyright">
+                <li>&copy; Dispersed Connection</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </section>
+
+        <!-- Scripts -->
+        <script src="{% static 'main/js/jquery.min.js' %}"></script>
+        <script src="{% static 'main/js/jquery.scrolly.min.js' %}"></script>
+        <script src="{% static 'main/js/browser.min.js' %}"></script>
+        <script src="{% static 'main/js/breakpoints.min.js' %}"></script>
+        <script src="{% static 'main/js/util.js' %}"></script>
+        <script src="{% static 'main/js/main.js' %}"></script>
+
+    </body>
+</html>

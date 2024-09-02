@@ -1,0 +1,11 @@
+/* custom.css */
+.button.orange {
+    background-color: orangered;
+    border: none;
+    text-decoration: none;
+}
+
+.button.orange:hover {
+    background-color: blue; /* Darker shade on hover */
+}
+
