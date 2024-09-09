@@ -14,6 +14,8 @@
 		<link rel="stylesheet" href="{% static 'main/css/main.css' %}" />
 		<link rel="stylesheet" href="{% static 'main/css/custom.css' %}" />
 		<noscript><link rel="stylesheet" href="{% static 'main/css/noscript.css' %}" /></noscript>
+		
+
 	</head>
 	<body class="is-preload">
 
@@ -21,7 +23,7 @@
 			<section id="header">
 				<div class="inner">
 					<span class="icon solid major fa-cloud"></span>
-					<h1><strong>Hi, Visitor! </strong> Thanks for checking in!<br /> You're probably short on time so lets jump right in to my latest interactive Deep Learning project:<br />
+					<h1><strong>Hi, I am Abhinav (or Alex)! </strong> Thanks for checking in!<br />I built this website using Django to Serve My ML Projects<br /> Jump right in to my latest Deep Learning project based on PyTorch:<br />
 					 <a href="{% url 'melanoma_detection' %}"><span style="color: orangered; font-weight: 500;">MELANOMA & LESIONS CLASSIFIER</span></a></h1>
 					<p><br />
 					<strong>This Deep Learning Model will return the type of cancer/skin liason in the photo of a deseased skin patch you upload.</strong><br /> You may navigate to it by clicking the button below me!</p>
@@ -34,62 +36,85 @@
 				</div>
 			</section>
 
-		<!-- One -->
-			<section id="one" class="main style1">
-				<div class="container">
-					<div class="row gtr-150">
-						<div class="col-6 col-12-medium">
-							<header class="major">
-								<h4><i>A little Bit About Me.</i><br /></h4>
-								<h2>My Name is <b>Abhinav Tyagi</b>, Friends call me <b>Aleks(andr)</b><br />
-									<br /><center><b>I still dream in C++</b></center>
-									<br>here are some more projects you can enjoy. :-)</h2>
-							</header>
-							<p></p>
-						</div>
-						<div class="col-6 col-12-medium imp-medium">
-							<span class="image fit"><img src="{% static 'main/images/pic01.jpg' %}" alt="" /></span>
-						</div>
-					</div>
-					<p><a href="{% url 'sleep_cycle_prediction' %}"><strong><span style="color: orangered;">&#8226; Sleep Quality Rating System (Based On Random Forests)</span></strong></a></p>
-				</div>
-			</section>
 
-		<!-- Two -->
-			<section id="two" class="main style2">
-				<div class="container">
-					<div class="row gtr-150">
+	
+				<!-- Two -->
+				<section id="two" class="main style2">
+					<div class="container">
+					  <div class="row gtr-150" style="display: flex; align-items: flex-start;">
 						<div class="col-6 col-12-medium">
-							<ul class="major-icons">
-								<li><span class="icon solid style1 major fa-code"></span></li>
-								<li><span class="icon solid style2 major fa-bolt"></span></li>
-								<li><span class="icon solid style3 major fa-camera-retro"></span></li>
-								<li><span class="icon solid style4 major fa-cog"></span></li>
-								<li><span class="icon solid style5 major fa-desktop"></span></li>
-								<li><span class="icon solid style6 major fa-calendar"></span></li>
-							</ul>
+						<!-- Image on the left side -->
+						
+						  <img src="{% static 'main/images/nvidia-smi.png' %}" alt="nvidia-smi screenshot" style="width: 100%; height: auto;">
+						  
+								<ul class="major-icons" style="display: flex; flex-wrap: wrap; gap: 5px; justify-content: center;">
+									<li><img src="{% static 'main/images/github.png' %}" alt="GitHub" style="width: 180px; height: 180px;"></li>
+									<li><img src="{% static 'main/images/torch.png' %}" alt="PyTorch" style="width: 180px; height: 180px;"></li>
+									<li><img src="{% static 'main/images/kubernetes.png' %}" alt="Kubernetes" style="width: 180px; height: 180px;"></li>
+									<li><img src="{% static 'main/images/ubuntu.png' %}" alt="Ubuntu" style="width: 180px; height: 180px;"></li>
+									<li><img src="{% static 'main/images/jenkins.png' %}" alt="Jenkins" style="width: 150px; height: 180px;"></li>
+									<li><img src="{% static 'main/images/docker.png' %}" alt="Docker" style="width: 230px; height: 140px;"></li>
+								  </ul>
+							
 						</div>
-						<div class="col-6 col-12-medium">
-							<header class="major">
-								<h2>I am a Machine Learning Engineer<br />
-								I Develop & Deploy Automated Machine Learning solutions for Humans</h2>
-							</header>
-							<p>This Website is the union of all technologies I know to serving something useful.</p>
-							<p>All the complexities are buried. And only relevent parts are exposed in simple language so it can be fully used by a very distracted 21st century man.</p>
-							<p>The code for this website can be cloned using: </p><pre><code>git clone https://github.com/abhinavt0681/dispersedConnectioned</code></pre>
-							<p>The website is built using django. Whereas each Application is its own dockerised microservice, communicating with website using FastAPI</p>
-							<p>Each Machine Learning/Deep Learning application was trained by me, on my little laptop.</p>
-							<p>My Deep Learning Stalk is:
-								<br />&#8226;  CUDA 12.5
-								<br />&#8226;  PyTorch
-								<br />&#8226;  NVidia RTX 3070 8 GB
-								<br />&#8226;  PopOS! Based on Ubuntu 22.04 LTS
-
-							</p>
+				  
+						<!-- Text on the right side -->
+						<div class="col-6 col-12-medium" style="flex: 1;">
+						  <h2>I am a Machine Learning Engineer<br />
+							I Develop & Deploy Automated Machine Learning solutions for Humans</h2>
+						  <p>This Website is the union of the technologies I know to serve something useful.</p>
+						  <p>All the complexities are buried, and only relevant parts are exposed in simple language so it can be fully used by a very distracted 21st-century individual.</p>
+						  <p>The code for this website can be cloned using: </p>
+						  <pre><code>git clone https://github.com/abhinavt0681/dispersedConnectioned</code></pre>
+						  <p>The website is built using Django. Each application is its own Dockerized microservice, communicating with the website using FastAPI.</p>
+						  <p>Each Machine Learning/Deep Learning application was trained by me, on my little laptop.</p>
+						  <p>My Deep Learning stack includes:<strong>
+							<br />&#8226;  CUDA 12.5
+							<br />&#8226;  PyTorch 
+							<br />&#8226;  NVidia RTX 3070 8 GiB
+							<br />&#8226;  PopOS! Based on Ubuntu 22.04 LTS
+							<br />&#8226; Anaconda</strong>
+						  </p>
+						  <p>My MlOps/DevOps/CI/CD Stalk Includes:<strong>
+							<br />&#8226;  Jenkins
+							<br />&#8226;  Docker
+							<br />&#8226;  Kubernetes
+							<br />&#8226;  FastAPI
+							<br />&#8226;  Git</strong>
+						  </p>
 						</div>
+					  </div>
 					</div>
-				</div>
-			</section>
+				  </section>
+				  
+<!-- One -->
+<section id="one" class="main style1">
+	<div class="container">
+		<div class="row gtr-150">
+			<div class="col-6 col-12-medium">
+				<header class="major">
+					
+					<h2>My Name is <b>Abhinav Tyagi</b>, Friends call me <b>Alex(ander)</b><br />
+						<br /><center><b>I'm a machine Learning engineer that still dreams in C++</b></center>
+						</h2>
+					<h3>But now drunk on a Pytonic solution called PyTorch.</h3>
+				</header>
+				<p></p>
+			</div>
+			<div class="col-6 col-12-medium imp-medium">
+				<h2>More models I trained & productionized on this website:</h2>
+				<p><a href="{% url 'sleep_cycle_prediction' %}"><strong><span style="color: orangered;">&#8226; Sleep Quality Rating System (Based On Random Forests)</span></strong></a></p>
+				<p><a href="{% url 'sleep_cycle_prediction' %}"><strong><span style="color: orangered;">&#8226; Melanoma and Skin Liason Classifier based on PyTorch.</span></strong></a></p>
+
+			</div>
+		</div>
+		
+	</div>
+</section>				  
+				  
+  
+		  
+		  
 			<!-- Zero -->
 			<section id="zero" class="main style1">
 				<div class="container">
@@ -103,68 +128,35 @@
 					<p><i>PS: I made this illustration too. :-)</i></p>
 					</div>
 			</section>
-		<!-- Three -->
-			<section id="three" class="main style1 special">
-				<div class="container">
-					<header class="major">
-						<h2>Adipiscing amet consequat</h2>
-					</header>
-					<p>Ante nunc accumsan et aclacus nascetur ac ante amet sapien sed.</p>
-					<div class="row gtr-150">
-						<div class="col-4 col-12-medium">
-							<span class="image fit"><img src="{% static 'main/images/pic02.jpg' %}" alt="" /></span>
-							<h3>Magna feugiat lorem</h3>
-							<p>Adipiscing a commodo ante nunc magna lorem et interdum mi ante nunc lobortis non amet vis sed volutpat et nascetur.</p>
-							<ul class="actions special">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</div>
-						<div class="col-4 col-12-medium">
-							<span class="image fit"><img src="{% static 'main/images/pic03.jpg' %}" alt="" /></span>
-							<h3>Magna feugiat lorem</h3>
-							<p>Adipiscing a commodo ante nunc magna lorem et interdum mi ante nunc lobortis non amet vis sed volutpat et nascetur.</p>
-							<ul class="actions special">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</div>
-						<div class="col-4 col-12-medium">
-							<span class="image fit"><img src="{% static 'main/images/pic04.jpg' %}" alt="" /></span>
-							<h3>Magna feugiat lorem</h3>
-							<p>Adipiscing a commodo ante nunc magna lorem et interdum mi ante nunc lobortis non amet vis sed volutpat et nascetur.</p>
-							<ul class="actions special">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
-
 		<!-- Four -->
 			<section id="four" class="main style2 special">
 				<div class="container">
 					<header class="major">
-						<h2>Ipsum feugiat consequat?</h2>
+						<h2>Connect with me!</h2>
 					</header>
-					<p>Sed lacus nascetur ac ante amet sapien.</p>
+					<p></p>
+					<strong>Abhinav Tyagi </strong><br />
+					683C, Parker Street, Boston 02120 MA
 					<ul class="actions special">
-						<li><a href="#" class="button wide primary">Sign Up</a></li>
-						<li><a href="#" class="button wide">Learn More</a></li>
+						<li>abhinavt@bu.edu</li>
+						<li>+1-6175869406</li>
 					</ul>
+
 				</div>
 			</section>
 
 		<!-- Footer -->
 			<section id="footer">
-				<ul class="icons">
+				<!---<ul class="icons">
 					<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
 					<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
 					<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
 					<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
-				</ul>
+				</ul>--->
 				<ul class="copyright">
-					<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-				</ul>
+					<li>Made by Abhinav Tyagi</li><li><a href="https://github.com/abhinavt0681">Github</a></li>
+				</ul> 
 			</section>
 
 		<!-- Scripts -->
