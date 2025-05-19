@@ -8,9 +8,25 @@ services:
     networks:
       - dispersedconnection-network
     ports:
-      - "80:80"
-      - "443:443"
+      - "8000:8000"
     depends_on:
+      - melanoma-detector
+      - sleep-cycle-predictor
+
+  nextjs-frontend:
+    build:
+      context: ./frontend
+    container_name: nextjs-frontend
+    networks:
+      - dispersedconnection-network
+    ports:
+      - "80:3000"
+      - "443:3000"
+    environment:
+      - MELANOMA_API_URL=http://melanoma-detector:8000/predict
+      - SLEEP_API_URL=http://sleep-cycle-predictor:8002/predict
+    depends_on:
+      - dispersed-connection
       - melanoma-detector
       - sleep-cycle-predictor
 
