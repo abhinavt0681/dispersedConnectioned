@@ -1,219 +1,194 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
 
 export default function Home() {
   return (
-    <div className="flex flex-col bg-background">
-      {/* Hero Section */}
-      <section className="primary-gradient text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center">
-            <motion.div 
-              className="md:w-1/2 mb-10 md:mb-0"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                AI-Powered Health Insights
-              </h1>
-              <p className="text-xl mb-8">
-                Advanced tools for melanoma detection and sleep quality prediction 
-                in one convenient platform.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/melanoma" className="btn bg-white text-primary hover:bg-gray-100">
-                  Detect Skin Cancer
-                </Link>
-                <Link href="/sleep" className="btn bg-secondary hover:bg-secondary-dark">
-                  Analyze Sleep Quality
-                </Link>
-              </div>
-            </motion.div>
-            <motion.div 
-              className="md:w-1/2 flex justify-center md:justify-end"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div className="relative w-full max-w-md h-80">
-                {/* Placeholder for hero image */}
-                <div className="absolute inset-0 bg-white/10 rounded-lg backdrop-blur-sm flex items-center justify-center">
-                  <svg className="w-24 h-24 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our AI Services</h2>
-            <p className="text-text max-w-2xl mx-auto">
-              Leveraging cutting-edge AI technology to provide accurate health insights and predictions.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-10">
-            <motion.div 
-              className="card hover:shadow-lg transition-shadow"
-              whileHover={{ y: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <svg className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Melanoma Detection</h3>
-              <p className="text-text-light mb-4">
-                Upload an image of a skin lesion and receive an instant assessment of potential skin cancer risks.
-              </p>
-              <Link href="/melanoma" className="text-primary font-medium hover:text-primary-dark">
-                Detect Now →
-              </Link>
-            </motion.div>
-
-            <motion.div 
-              className="card hover:shadow-lg transition-shadow"
-              whileHover={{ y: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <div className="h-12 w-12 rounded-full bg-secondary/10 flex items-center justify-center mb-4">
-                <svg className="h-6 w-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Sleep Quality Prediction</h3>
-              <p className="text-text-light mb-4">
-                Analyze your sleep patterns and lifestyle factors to receive personalized sleep quality insights.
-              </p>
-              <Link href="/sleep" className="text-secondary font-medium hover:text-secondary-dark">
-                Analyze Now →
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="py-20 bg-background-dark">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
-            <p className="text-text max-w-2xl mx-auto">
-              Our platform uses advanced machine learning algorithms to provide accurate health insights in just a few steps.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
-                1
-              </div>
-              <h3 className="text-xl font-bold mb-2">Input Your Data</h3>
-              <p className="text-text-light">
-                Upload an image or enter your health information depending on the service you need.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
-                2
-              </div>
-              <h3 className="text-xl font-bold mb-2">AI Analysis</h3>
-              <p className="text-text-light">
-                Our advanced AI models process your data using state-of-the-art algorithms.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
-                3
-              </div>
-              <h3 className="text-xl font-bold mb-2">Get Results</h3>
-              <p className="text-text-light">
-                Receive detailed insights and recommendations based on your specific data.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl shadow-md p-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-4">Your Trust & Privacy Matter</h2>
-              <p className="text-text-light max-w-2xl mx-auto">
-                We take your privacy seriously and ensure your data is handled securely.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="h-12 w-12 mx-auto mb-4">
-                  <svg className="h-full w-full text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-bold mb-2">Data Security</h3>
-                <p className="text-text-light text-sm">
-                  All uploaded images and personal information are encrypted and securely stored.
+    <div className="bg-white">
+      {/* Hero section */}
+      <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20">
+        <div className="mx-auto max-w-7xl pb-24 pt-10 sm:pb-32 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-40">
+          <div className="px-6 lg:px-0 lg:pt-4">
+            <div className="mx-auto max-w-2xl">
+              <div className="max-w-lg">
+                <h1 className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                  AI & Machine Learning Portfolio
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-gray-600">
+                  Showcasing innovative projects in artificial intelligence and machine learning, 
+                  focused on healthcare applications and predictive modeling.
                 </p>
-              </div>
-              <div className="text-center">
-                <div className="h-12 w-12 mx-auto mb-4">
-                  <svg className="h-full w-full text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
+                <div className="mt-10 flex items-center gap-x-6">
+                  <Link
+                    href="/melanoma"
+                    className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Melanoma Detection
+                  </Link>
+                  <Link href="/sleep" className="text-sm font-semibold leading-6 text-gray-900">
+                    Sleep Analysis <span aria-hidden="true">→</span>
+                  </Link>
                 </div>
-                <h3 className="text-lg font-bold mb-2">Accuracy Promise</h3>
-                <p className="text-text-light text-sm">
-                  Our AI models are regularly updated and trained on diverse datasets for reliable results.
-                </p>
               </div>
-              <div className="text-center">
-                <div className="h-12 w-12 mx-auto mb-4">
-                  <svg className="h-full w-full text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+            </div>
+          </div>
+          <div className="mt-20 sm:mt-24 md:mx-auto md:max-w-2xl lg:mx-0 lg:mt-0 lg:w-screen">
+            <div className="absolute inset-y-0 right-1/2 -z-10 -mr-10 w-[200%] skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 md:-mr-20 lg:-mr-36" aria-hidden="true" />
+            <div className="shadow-lg md:rounded-3xl">
+              <div className="bg-indigo-500 [clip-path:inset(0)] md:[clip-path:inset(0_round_theme(borderRadius.3xl))]">
+                <div className="absolute -inset-y-px left-1/2 -z-10 ml-10 w-[200%] skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white md:ml-20 lg:ml-36" aria-hidden="true" />
+                <div className="relative px-6 pt-8 sm:pt-16 md:pl-16 md:pr-0">
+                  <div className="mx-auto max-w-2xl md:mx-0 md:max-w-none">
+                    <div className="w-screen overflow-hidden rounded-tl-xl bg-gray-900">
+                      <div className="flex bg-gray-800/40 ring-1 ring-white/5">
+                        <div className="-mb-px flex text-sm font-medium leading-6 text-gray-400">
+                          <div className="border-b border-r border-b-white/20 border-r-white/10 bg-white/5 px-4 py-2 text-white">
+                            AIModel.py
+                          </div>
+                          <div className="border-r border-gray-600/10 px-4 py-2">
+                            Output.json
+                          </div>
+                        </div>
+                      </div>
+                      <div className="px-6 pt-6 pb-14 text-sm font-mono text-green-400">
+                        <div>
+                          <span className="text-gray-300">{'# Melanoma detection model'}</span>
+                        </div>
+                        <div className="mt-4">
+                          <span className="text-pink-400">{'from'}</span>
+                          <span className="text-white">{' tensorflow '}</span>
+                          <span className="text-pink-400">{'import'}</span>
+                          <span className="text-white">{' keras'}</span>
+                        </div>
+                        <div className="mt-2">
+                          <span className="text-pink-400">{'import'}</span>
+                          <span className="text-white">{' numpy '}</span>
+                          <span className="text-pink-400">{'as'}</span>
+                          <span className="text-white">{' np'}</span>
+                        </div>
+                        <div className="mt-6">
+                          <span className="text-pink-400">{'def'}</span>
+                          <span className="text-white">{' predict_melanoma(image):'}</span>
+                        </div>
+                        <div className="ml-8 mt-2">
+                          <span className="text-white">{'model = keras.models.load_model("melanoma.h5")'}</span>
+                        </div>
+                        <div className="ml-8 mt-2">
+                          <span className="text-white">{'preprocessed = preprocess_image(image)'}</span>
+                        </div>
+                        <div className="ml-8 mt-2">
+                          <span className="text-white">{'prediction = model.predict(preprocessed)'}</span>
+                        </div>
+                        <div className="ml-8 mt-2">
+                          <span className="text-white">{'return prediction'}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 md:rounded-3xl" aria-hidden="true" />
                 </div>
-                <h3 className="text-lg font-bold mb-2">Transparent Results</h3>
-                <p className="text-text-light text-sm">
-                  We provide clear explanations of our predictions and actionable insights.
-                </p>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* CTA Section */}
-      <section className="primary-gradient text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Choose one of our AI-powered tools and start gaining valuable health insights today.
+      {/* Feature section */}
+      <div className="mx-auto mt-12 max-w-7xl px-6 sm:mt-16 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-base font-semibold leading-7 text-indigo-600">Advanced AI Projects</h2>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            Healthcare AI Solutions
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/melanoma" className="btn bg-white text-primary hover:bg-gray-100">
-              Detect Skin Cancer
+          <p className="mt-6 text-lg leading-8 text-gray-600">
+            Leveraging machine learning to solve complex healthcare challenges and improve patient outcomes.
+          </p>
+        </div>
+
+        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+            <div className="flex flex-col">
+              <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                <div className="h-5 w-5 flex-none text-indigo-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                Melanoma Detection
+              </dt>
+              <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                <p className="flex-auto">
+                  Early detection of melanoma using computer vision and deep learning. Our model analyzes skin lesion
+                  images to identify potential malignancies with high accuracy.
+                </p>
+                <p className="mt-6">
+                  <Link href="/melanoma" className="text-sm font-semibold leading-6 text-indigo-600">
+                    Learn more <span aria-hidden="true">→</span>
+                  </Link>
+                </p>
+              </dd>
+            </div>
+
+            <div className="flex flex-col">
+              <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                <div className="h-5 w-5 flex-none text-indigo-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                Sleep Quality Analysis
+              </dt>
+              <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                <p className="flex-auto">
+                  Predictive modeling for sleep quality assessment based on lifestyle factors, sleep patterns, and 
+                  physiological data. Our algorithms provide personalized insights for better sleep.
+                </p>
+                <p className="mt-6">
+                  <Link href="/sleep" className="text-sm font-semibold leading-6 text-indigo-600">
+                    Learn more <span aria-hidden="true">→</span>
+                  </Link>
+                </p>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      {/* CTA section */}
+      <div className="mt-32 sm:mt-56">
+        <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
+          <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Ready to explore AI in healthcare?
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
+            Try our machine learning models and see the power of AI in action.
+          </p>
+          <div className="mt-10 flex items-center justify-center gap-x-6">
+            <Link
+              href="/melanoma"
+              className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Try Melanoma Detection
             </Link>
-            <Link href="/sleep" className="btn bg-secondary hover:bg-secondary-dark">
-              Analyze Sleep Quality
+            <Link href="/sleep" className="text-sm font-semibold leading-6 text-white">
+              Analyze Sleep Quality <span aria-hidden="true">→</span>
             </Link>
           </div>
+          <svg
+            viewBox="0 0 1024 1024"
+            className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
+            aria-hidden="true"
+          >
+            <circle cx="512" cy="512" r="512" fill="url(#827591b1-ce8c-4110-b064-7cb85a0b1217)" fillOpacity="0.7" />
+            <defs>
+              <radialGradient id="827591b1-ce8c-4110-b064-7cb85a0b1217">
+                <stop stopColor="#7775D6" />
+                <stop offset="1" stopColor="#E935C1" />
+              </radialGradient>
+            </defs>
+          </svg>
         </div>
-      </section>
+      </div>
     </div>
   );
 } 

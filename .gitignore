@@ -37,4 +37,13 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts 
+next-env.d.ts
+
+# additional
+*.log
+*.tmp
+*.swp
+*.swo
+.idea/
+.vscode/
+*.iml 

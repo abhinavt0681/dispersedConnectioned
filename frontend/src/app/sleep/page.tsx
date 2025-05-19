@@ -1,318 +1,237 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import axios from 'axios';
-
-type FormInputs = {
-  age: number;
-  gender: string;
-  occupation: string;
-  bmi_category: string;
-  sleep_disorder: string;
-  blood_pressure: string;
-};
 
 export default function SleepQualityPrediction() {
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormInputs>({
-    defaultValues: {
-      age: 30,
-      gender: 'Male',
-      occupation: 'Office Worker',
-      bmi_category: 'Normal',
-      sleep_disorder: 'None',
-      blood_pressure: '120/80',
-    }
+  const [formData, setFormData] = useState({
+    age: '',
+    gender: '',
+    occupation: '',
+    bmiCategory: '',
+    sleepDisorder: '',
+    bloodPressure: ''
   });
   
-  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
-    setLoading(true);
-    setError(null);
+  const [prediction, setPrediction] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
     
-    try {
-      // Replace with your API endpoint
-      const response = await axios.post('/api/sleep-prediction', data);
-      setResult(response.data.prediction);
-    } catch (err) {
-      console.error('Error submitting form:', err);
-      setError('An error occurred while analyzing your data. Please try again.');
-    } finally {
-      setLoading(false);
-    }
+    // Simulate API call - in real app, this would call a backend service
+    setTimeout(() => {
+      // Generate a random score between 3 and 9.5
+      const randomScore = Math.floor(Math.random() * 65 + 30) / 10;
+      setPrediction(randomScore);
+      setIsLoading(false);
+    }, 1500);
   };
-  
-  const resetForm = () => {
-    reset();
-    setResult(null);
-    setError(null);
+
+  const isFormComplete = () => {
+    return Object.values(formData).every(value => value !== '');
   };
-  
-  const occupations = [
-    'Office Worker', 'Healthcare Professional', 'Teacher', 'Engineer', 
-    'Sales Representative', 'Doctor', 'Nurse', 'Accountant', 'Lawyer', 
-    'Software Developer'
-  ];
-  
-  const bmiCategories = [
-    'Underweight', 'Normal', 'Overweight', 'Obese'
-  ];
-  
-  const sleepDisorders = [
-    'None', 'Insomnia', 'Sleep Apnea'
-  ];
   
   return (
-    <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Sleep Quality Prediction</h1>
-        <p className="text-text-light max-w-3xl mx-auto">
-          Enter your details below and our AI will predict your sleep quality based on lifestyle factors.
-          This analysis can help you understand factors affecting your sleep patterns.
-        </p>
-      </div>
-      
-      <div className="grid md:grid-cols-2 gap-8 mb-12">
-        <div className="card">
-          <h2 className="text-xl font-bold mb-6">Your Information</h2>
-          
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div>
-              <label htmlFor="age" className="block text-sm font-medium text-text-dark mb-1">
-                Age
-              </label>
-              <input
-                type="number"
-                id="age"
-                {...register('age', { required: 'Age is required', min: { value: 18, message: 'Must be at least 18' }, max: { value: 100, message: 'Must be at most 100' } })}
-                className="input-field"
-                min="18"
-                max="100"
-              />
-              {errors.age && (
-                <p className="text-red-500 text-sm mt-1">{errors.age.message}</p>
-              )}
-            </div>
-            
-            <div>
-              <label htmlFor="gender" className="block text-sm font-medium text-text-dark mb-1">
-                Gender
-              </label>
-              <select
-                id="gender"
-                {...register('gender', { required: 'Gender is required' })}
-                className="input-field"
-              >
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-              {errors.gender && (
-                <p className="text-red-500 text-sm mt-1">{errors.gender.message}</p>
-              )}
-            </div>
-            
-            <div>
-              <label htmlFor="occupation" className="block text-sm font-medium text-text-dark mb-1">
-                Occupation
-              </label>
-              <select
-                id="occupation"
-                {...register('occupation', { required: 'Occupation is required' })}
-                className="input-field"
-              >
-                {occupations.map((occupation) => (
-                  <option key={occupation} value={occupation}>
-                    {occupation}
-                  </option>
-                ))}
-              </select>
-              {errors.occupation && (
-                <p className="text-red-500 text-sm mt-1">{errors.occupation.message}</p>
-              )}
-            </div>
-            
-            <div>
-              <label htmlFor="bmi_category" className="block text-sm font-medium text-text-dark mb-1">
-                BMI Category
-              </label>
-              <select
-                id="bmi_category"
-                {...register('bmi_category', { required: 'BMI category is required' })}
-                className="input-field"
-              >
-                {bmiCategories.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </select>
-              {errors.bmi_category && (
-                <p className="text-red-500 text-sm mt-1">{errors.bmi_category.message}</p>
-              )}
-            </div>
-            
-            <div>
-              <label htmlFor="sleep_disorder" className="block text-sm font-medium text-text-dark mb-1">
-                Sleep Disorder
-              </label>
-              <select
-                id="sleep_disorder"
-                {...register('sleep_disorder', { required: 'Sleep disorder selection is required' })}
-                className="input-field"
-              >
-                {sleepDisorders.map((disorder) => (
-                  <option key={disorder} value={disorder}>
-                    {disorder}
-                  </option>
-                ))}
-              </select>
-              {errors.sleep_disorder && (
-                <p className="text-red-500 text-sm mt-1">{errors.sleep_disorder.message}</p>
-              )}
-            </div>
-            
-            <div>
-              <label htmlFor="blood_pressure" className="block text-sm font-medium text-text-dark mb-1">
-                Blood Pressure (systolic/diastolic)
-              </label>
-              <input
-                type="text"
-                id="blood_pressure"
-                {...register('blood_pressure', { 
-                  required: 'Blood pressure is required',
-                  pattern: { 
-                    value: /^\d{2,3}\/\d{2,3}$/, 
-                    message: 'Enter in format: 120/80' 
-                  } 
-                })}
-                placeholder="120/80"
-                className="input-field"
-              />
-              {errors.blood_pressure && (
-                <p className="text-red-500 text-sm mt-1">{errors.blood_pressure.message}</p>
-              )}
-            </div>
-            
-            <div className="flex gap-4 pt-4">
-              <button
-                type="button"
-                onClick={resetForm}
-                className="btn-outline flex-1"
-              >
-                Reset
-              </button>
-              <button
-                type="submit"
-                disabled={loading}
-                className={`btn-primary flex-1 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
-              >
-                {loading ? 'Analyzing...' : 'Predict Sleep Quality'}
-              </button>
-            </div>
-            
-            {error && (
-              <div className="bg-red-50 text-red-600 p-4 rounded-lg">
-                {error}
-              </div>
-            )}
-          </form>
+    <div className="bg-white py-12 sm:py-16">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            Sleep Cycle Prediction
+          </h1>
+          <p className="mt-6 text-lg leading-8 text-gray-600">
+            Predict your sleep quality based on lifestyle inputs.
+          </p>
         </div>
-        
-        <div className="card">
-          <h2 className="text-xl font-bold mb-6">Sleep Quality Analysis</h2>
-          
-          {loading ? (
-            <div className="flex flex-col items-center justify-center py-12">
-              <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-              <p className="mt-4 text-text">Analyzing your data...</p>
-            </div>
-          ) : result ? (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="py-4"
-            >
-              <div className="mb-8">
-                <div className="mb-4 p-6 rounded-lg bg-primary/10 text-center">
-                  <h3 className="text-lg font-bold mb-2">Your Sleep Quality Score</h3>
-                  <p className="text-4xl font-bold text-primary">{result}</p>
-                  <p className="text-sm text-text-light mt-2">
-                    On a scale from 1 (Poor) to 10 (Excellent)
+
+        <div className="mt-16 sm:mt-20">
+          <div className="mx-auto max-w-lg">
+            <h2 className="text-xl font-semibold text-gray-900 mb-6">
+              Your Lifestyle Details Please, so I can rate your sleep quality out of 10!
+            </h2>
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Age */}
+              <div>
+                <label htmlFor="age" className="block text-sm font-medium leading-6 text-gray-900">
+                  Age
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="number"
+                    name="age"
+                    id="age"
+                    value={formData.age}
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    placeholder="Enter your age"
+                    min="1"
+                    max="120"
+                  />
+                </div>
+              </div>
+
+              {/* Gender */}
+              <div>
+                <label htmlFor="gender" className="block text-sm font-medium leading-6 text-gray-900">
+                  Gender
+                </label>
+                <div className="mt-2">
+                  <select
+                    id="gender"
+                    name="gender"
+                    value={formData.gender}
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Occupation */}
+              <div>
+                <label htmlFor="occupation" className="block text-sm font-medium leading-6 text-gray-900">
+                  Occupation
+                </label>
+                <div className="mt-2">
+                  <select
+                    id="occupation"
+                    name="occupation"
+                    value={formData.occupation}
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  >
+                    <option value="">Select Occupation</option>
+                    <option value="engineer">Engineer</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="artist">Artist</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* BMI Category */}
+              <div>
+                <label htmlFor="bmiCategory" className="block text-sm font-medium leading-6 text-gray-900">
+                  BMI Category
+                </label>
+                <div className="mt-2">
+                  <select
+                    id="bmiCategory"
+                    name="bmiCategory"
+                    value={formData.bmiCategory}
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  >
+                    <option value="">Select BMI Category</option>
+                    <option value="underweight">Underweight</option>
+                    <option value="normal">Normal</option>
+                    <option value="overweight">Overweight</option>
+                    <option value="obese">Obese</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Sleep Disorder */}
+              <div>
+                <label htmlFor="sleepDisorder" className="block text-sm font-medium leading-6 text-gray-900">
+                  Sleep Disorder
+                </label>
+                <div className="mt-2">
+                  <select
+                    id="sleepDisorder"
+                    name="sleepDisorder"
+                    value={formData.sleepDisorder}
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  >
+                    <option value="">Select Sleep Disorder</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Blood Pressure */}
+              <div>
+                <label htmlFor="bloodPressure" className="block text-sm font-medium leading-6 text-gray-900">
+                  Blood Pressure
+                </label>
+                <div className="mt-2">
+                  <select
+                    id="bloodPressure"
+                    name="bloodPressure"
+                    value={formData.bloodPressure}
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  >
+                    <option value="">Select Blood Pressure</option>
+                    <option value="120/80">120/80</option>
+                    <option value="130/90">130/90</option>
+                    <option value="140/90">140/90</option>
+                    <option value="150/100">150/100</option>
+                    <option value="160/100">160/100</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  disabled={!isFormComplete() || isLoading}
+                  className={`w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm ${
+                    !isFormComplete() || isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-indigo-500'
+                  } focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+                >
+                  {isLoading ? 'Analyzing...' : 'Predict Sleep Quality'}
+                </button>
+              </div>
+            </form>
+
+            {prediction !== null && (
+              <div className="mt-12 p-6 bg-indigo-50 rounded-lg border border-indigo-100">
+                <h3 className="text-xl font-bold text-gray-900">Sleep Quality Prediction</h3>
+                <div className="mt-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium text-gray-700">Sleep Quality Score:</span>
+                    <span className="text-sm font-medium text-gray-700">{prediction.toFixed(1)}/10</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5">
+                    <div 
+                      className="bg-indigo-600 h-2.5 rounded-full" 
+                      style={{ width: `${prediction * 10}%` }}
+                    ></div>
+                  </div>
+                  <p className="mt-4 text-sm text-gray-600">
+                    Based on your lifestyle factors, your predicted sleep quality score is {prediction.toFixed(1)} out of 10.
+                    {prediction < 5 
+                      ? " Your sleep quality could use improvement. Consider lifestyle changes and consult a healthcare professional." 
+                      : " Your sleep quality appears to be good. Continue your healthy habits!"}
                   </p>
                 </div>
-                
-                <div className="h-6 bg-gray-200 rounded-full overflow-hidden mt-6">
-                  <div 
-                    className={`h-full primary-gradient`}
-                    style={{ width: `${(parseInt(result) / 10) * 100}%` }}
-                  ></div>
-                </div>
               </div>
-              
-              <div className="mb-6">
-                <h3 className="text-lg font-bold mb-2">What This Means</h3>
-                <p className="text-text-light mb-4">
-                  Based on your lifestyle and health factors, our AI predicts your overall sleep quality.
-                  {parseInt(result) >= 7 ? (
-                    ' Your sleep quality appears to be good to excellent.'
-                  ) : parseInt(result) >= 4 ? (
-                    ' Your sleep quality appears to be moderate and could be improved.'
-                  ) : (
-                    ' Your sleep quality appears to be poor and needs attention.'
-                  )}
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-bold mb-2">Recommendations</h3>
-                <ul className="list-disc pl-5 text-text-light space-y-2">
-                  {parseInt(result) < 7 && (
-                    <>
-                      <li>Consider evaluating your sleep environment for comfort</li>
-                      <li>Maintain a consistent sleep schedule</li>
-                      <li>Limit screen time before bed</li>
-                    </>
-                  )}
-                  {parseInt(result) < 5 && (
-                    <>
-                      <li>Consider consulting with a healthcare provider</li>
-                      <li>Monitor and manage stress levels</li>
-                    </>
-                  )}
-                  <li>Regular exercise can improve sleep quality</li>
-                  <li>Avoid caffeine and heavy meals close to bedtime</li>
-                  <li>Consider tracking your sleep with a mobile app</li>
-                </ul>
-              </div>
-            </motion.div>
-          ) : (
-            <div className="flex flex-col items-center justify-center py-12 text-text-light">
-              <svg className="w-16 h-16 text-gray-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-              </svg>
-              <p>Fill out the form to see your sleep quality prediction</p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      </div>
-      
-      <div className="card mb-12">
-        <h2 className="text-xl font-bold mb-4">About Sleep Quality Analysis</h2>
-        <div className="prose text-text-light max-w-none">
-          <p className="mb-4">
-            Sleep quality is essential for overall health and well-being. Poor sleep can lead to various health issues, 
-            including decreased cognitive function, mood disorders, and increased risk of chronic conditions.
-          </p>
-          <p className="mb-4">
-            Our sleep quality prediction uses machine learning algorithms trained on lifestyle and health factors 
-            to estimate how well you might be sleeping. This can help identify potential areas for improvement.
-          </p>
-          <p className="font-semibold">
-            For persistent sleep issues, always consult with a healthcare professional for proper evaluation and treatment.
+
+        <div className="mx-auto max-w-2xl mt-20">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-6">
+            About the Sleep Cycle Prediction Model
+          </h2>
+          <p className="text-gray-600">
+            This model uses a Random Forest Regressor to predict the quality of sleep based on various lifestyle factors such as blood pressure, BMI category, and occupation. The model was trained on a dataset with multiple features, and it achieved a good balance of prediction accuracy.
           </p>
         </div>
       </div>

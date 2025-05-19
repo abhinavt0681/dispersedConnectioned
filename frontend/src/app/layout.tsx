@@ -1,11 +1,11 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Dispersed Connection | AI-Powered Health Insights',
-  description: 'AI tools for melanoma detection and sleep quality prediction',
+  title: 'AI Portfolio | Machine Learning Projects',
+  description: 'Portfolio showcasing projects in AI and machine learning, including melanoma detection and sleep quality prediction',
 };
 
 export default function RootLayout({
