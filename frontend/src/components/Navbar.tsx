@@ -15,7 +15,7 @@ export default function Navbar() {
 
   const navigation = [
     { name: 'Home', href: '/', current: pathname === '/' },
-    { name: 'Melanoma Detection', href: '/melanoma', current: pathname === '/melanoma' },
+    { name: 'Skin Desease Classifier', href: '/melanoma', current: pathname === '/melanoma' },
     { name: 'Sleep Quality', href: '/sleep', current: pathname === '/sleep' },
     { name: 'Contact', href: '/contact', current: pathname === '/contact' },
   ];

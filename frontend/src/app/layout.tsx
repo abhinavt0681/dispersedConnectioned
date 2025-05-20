@@ -4,8 +4,8 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 export const metadata: Metadata = {
-  title: 'AI Portfolio | Machine Learning Projects',
-  description: 'Portfolio showcasing projects in AI and machine learning, including melanoma detection and sleep quality prediction',
+  title: 'Dispersed Connection - Abhinav\'s Portfolio',
+  description: 'Abhinav Tyagi (Alex) - Machine Learning Engineer that develops & deploys automated machine learning solutions for humans',
 };
 
 export default function RootLayout({

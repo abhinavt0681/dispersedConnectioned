@@ -200,39 +200,85 @@ export default function SleepQualityPrediction() {
               </div>
             </form>
 
-            {prediction !== null && (
-              <div className="mt-12 p-6 bg-indigo-50 rounded-lg border border-indigo-100">
-                <h3 className="text-xl font-bold text-gray-900">Sleep Quality Prediction</h3>
+            {prediction && (
+              <div className="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">Sleep Quality Analysis</h2>
                 <div className="mt-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-700">Sleep Quality Score:</span>
-                    <span className="text-sm font-medium text-gray-700">{prediction.toFixed(1)}/10</span>
+                  <div className="relative pt-1">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-indigo-600 bg-indigo-200">
+                          Sleep Quality Score
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-xs font-semibold inline-block text-indigo-600">
+                          {prediction}/10
+                        </span>
+                      </div>
+                    </div>
+                    <div className="overflow-hidden h-2 mt-2 text-xs flex rounded bg-indigo-200">
+                      <div
+                        style={{ width: `${(prediction / 10) * 100}%` }}
+                        className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-600"
+                      ></div>
+                    </div>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div 
-                      className="bg-indigo-600 h-2.5 rounded-full" 
-                      style={{ width: `${prediction * 10}%` }}
-                    ></div>
+                  
+                  <div className="mt-4">
+                    <h3 className="text-sm font-medium text-gray-900">
+                      What this means for you:
+                    </h3>
+                    <p className="mt-2 text-sm text-gray-600">
+                      {prediction < 5
+                        ? 'Your sleep quality is below average. Consider improving your sleep habits.'
+                        : prediction < 7
+                        ? 'Your sleep quality is average. There is room for improvement.'
+                        : 'Your sleep quality is good. Keep maintaining healthy sleep habits.'}
+                    </p>
                   </div>
-                  <p className="mt-4 text-sm text-gray-600">
-                    Based on your lifestyle factors, your predicted sleep quality score is {prediction.toFixed(1)} out of 10.
-                    {prediction < 5 
-                      ? " Your sleep quality could use improvement. Consider lifestyle changes and consult a healthcare professional." 
-                      : " Your sleep quality appears to be good. Continue your healthy habits!"}
-                  </p>
                 </div>
+                <p className="mt-4 text-xs text-gray-500">
+                  Note: This is a demonstration and not medical advice. Please consult with a healthcare professional for proper guidance.
+                </p>
               </div>
             )}
           </div>
         </div>
 
-        <div className="mx-auto max-w-2xl mt-20">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-6">
+        <div className="mt-16 mx-auto max-w-2xl">
+          <h2 className="text-2xl font-bold text-gray-900">
             About the Sleep Cycle Prediction Model
           </h2>
-          <p className="text-gray-600">
-            This model uses a Random Forest Regressor to predict the quality of sleep based on various lifestyle factors such as blood pressure, BMI category, and occupation. The model was trained on a dataset with multiple features, and it achieved a good balance of prediction accuracy.
-          </p>
+          <div className="mt-6 space-y-6 text-gray-600">
+            <p>
+              This model uses a Random Forest Regressor to predict the quality of sleep based on various lifestyle factors such as blood pressure, BMI category, and occupation. The model was trained on a dataset with multiple features, and it achieved a good balance of prediction accuracy.
+            </p>
+            <p>
+              As part of my machine learning portfolio, this project demonstrates my ability to work with classification and regression algorithms to solve real-world problems. The model is deployed as a containerized microservice, showcasing my MLOps skills.
+            </p>
+          </div>
+          
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <h3 className="text-lg font-semibold text-gray-900">Technologies Used</h3>
+              <ul className="mt-4 space-y-2 text-gray-600 list-disc list-inside">
+                <li>Python</li>
+                <li>scikit-learn (Random Forest)</li>
+                <li>Docker</li>
+                <li>FastAPI</li>
+              </ul>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <h3 className="text-lg font-semibold text-gray-900">Project Highlights</h3>
+              <ul className="mt-4 space-y-2 text-gray-600 list-disc list-inside">
+                <li>Data preprocessing and feature engineering</li>
+                <li>Model training and hyperparameter tuning</li>
+                <li>Containerized deployment</li>
+                <li>Interactive user interface</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

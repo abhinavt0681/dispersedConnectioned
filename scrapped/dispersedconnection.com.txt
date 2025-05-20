@@ -1,0 +1,137 @@
+
+
+
+
+Dispersed Connection - Abhinav's Portfolio
+
+
+
+
+
+
+
+
+
+
+
+Hi, I am Abhinav (or Alex)!  Thanks for checking in!I built this website using Django to Serve My ML Projects Jump right in to my latest Deep Learning project based on PyTorch:
+MELANOMA & LESIONS CLASSIFIER
+
+This Deep Learning Model will return the type of cancer/skin liason in the photo of a deseased skin patch you upload. You may navigate to it by clicking the button below me!
+
+Skin Desease Classifier
+
+
+
+The code for this website here: https://github.com/abhinavt0681/dispersedConnectioned
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I am a Machine Learning Engineer
+							I Develop & Deploy Automated Machine Learning solutions for Humans
+This Website is the union of the technologies I know to serve something useful.
+All the complexities are buried, and only relevant parts are exposed in simple language so it can be fully used by a very distracted 21st-century individual.
+The code for this website can be cloned using: 
+git clone https://github.com/abhinavt0681/dispersedConnectioned
+The website is built using Django. Each application is its own Dockerized microservice, communicating with the website using FastAPI.
+Each Machine Learning/Deep Learning application was trained by me, on my little laptop.
+My Deep Learning stack includes:
+•  CUDA 12.5
+							•  PyTorch 
+							•  NVidia RTX 3070 8 GiB
+							•  PopOS! Based on Ubuntu 22.04 LTS
+							• Anaconda
+
+My MlOps/DevOps/CI/CD Stalk Includes:
+•  Jenkins
+							•  Docker
+							•  Kubernetes
+							•  FastAPI
+							•  Git
+
+
+
+
+
+
+
+
+
+
+
+My Name is Abhinav Tyagi, Friends call me Alex(ander)
+I'm a machine Learning engineer that still dreams in C++
+
+But now drunk on a Pytonic solution called PyTorch.
+
+
+
+
+More models I trained & productionized on this website:
+• Sleep Quality Rating System (Based On Random Forests)
+• Melanoma and Skin Liason Classifier based on PyTorch.
+
+
+
+
+
+
+
+Website Structure
+A small bird's eye view of this website and its interaction with its microservices. The website is deployed on DigitalOcean Droplet right now (like AWS EC2).
+
+
+
+
+
+PS: I made this illustration too. :-)
+
+
+
+
+
+
+Connect with me!
+
+
+Abhinav Tyagi 
+					683C, Parker Street, Boston 02120 MA
+					
+abhinavt@bu.edu
++1-6175869406
+
+
+
+
+
+
+
+Made by Abhinav TyagiGithub
+
+
+
+
+
+
+
+
+
+
+

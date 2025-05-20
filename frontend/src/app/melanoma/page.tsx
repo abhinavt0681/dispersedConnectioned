@@ -141,8 +141,8 @@ export default function MelanomaDetection() {
               <p className="mt-2 text-xl font-semibold text-gray-900">49.5%</p>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
-              <p className="text-sm font-medium text-gray-500">Testing Data Size</p>
-              <p className="mt-2 text-xl font-semibold text-gray-900">232 MiB</p>
+              <p className="text-sm font-medium text-gray-500">Training Data</p>
+              <p className="mt-2 text-xl font-semibold text-gray-900">ISIC labelled dataset</p>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
               <p className="text-sm font-medium text-gray-500">Number of Diseases Classified</p>
@@ -155,7 +155,10 @@ export default function MelanomaDetection() {
               This deep learning model was built using a pre-trained ResNet-18 architecture, which is fine-tuned to classify nine types of skin lesions. The model was trained on a modest dataset of 602 MiB with advanced data augmentation techniques to simulate real-world variations, such as random horizontal flipping, rotation, and resized cropping. Despite the small dataset size, the model achieved an accuracy of 49.5% on the test set.
             </p>
             <p>
-              The training and evaluation were performed on a machine running <span className="font-semibold">Ubuntu</span> with an <span className="font-semibold">NVIDIA RTX 3070 TI GPU</span> with CUDA version 12.4, which allowed efficient processing of images and faster training times. The model trained over 20 epochs using a combination of Adam optimizer and a learning rate scheduler, to improve the model performance from 37% accuracy to 49.5%.
+              The training and evaluation were performed on a machine running <span className="font-semibold">Ubuntu</span> with an <span className="font-semibold">NVIDIA RTX 3070 TI GPU</span> with CUDA version 12.4, which allowed efficient processing of images and faster training times. I trained the model over 20 epochs using a combination of Adam optimizer and a learning rate scheduler, to improve the model performance from 37% accuracy to 49.5%.
+            </p>
+            <p>
+              The end user is always in my mind when making projects. I focus not just on making the model, but also making it very easy to use. So little details like making it crystal clear where to click, direct navigation, and good UX design are all important to me. This model is deployed on its own Docker container with FastAPI, showcasing my skills in CI/CD frameworks and microservice architecture.
             </p>
           </div>
 

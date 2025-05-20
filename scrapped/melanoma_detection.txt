@@ -1,0 +1,111 @@
+
+
+
+
+Melanoma Detection - Dispersed Connection
+
+
+
+
+
+
+
+
+
+
+Skin Cancer and Lesion Detector
+Upload a photo of the skin patch, to find the type of skin cancer or lesion.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+About the Skin Condition Classifier
+
+Training Data Size: 602 MiB           Accuracy: 49.5% 
+Testing Data Size: 232 MiB           Number of Diseases Classified: 9 
+Training Data: ISIC labelled dataset
+Training Hardware: NVidia RTX 3070 TI Laptop GPU
+Training environment & Libraries: Ubuntu 22.04 LTS, Conda, CUDA 12.5, PyTorch
+Deployed On  Ubuntu 22.04 Docker 27.1 Container With FastAPI On EC2 Instance
+The model is being from its own docker container. This website is designed with CI/CD framework, microservice architecture and modularity in mind.
+
+                    This deep learning model was built using a pre-trained ResNet-18 architecture, which is fine-tuned to classify nine types of skin lesions. The model was trained on a modest dataset of 602 MiB with advanced data augmentation techniques to simulate real-world variations, such as random horizontal flipping, rotation, and resized cropping. Despite the small dataset size, the model achieved an accuracy of 49.5% on the test set.
+                
+
+                    The training and evaluation were performed on a machine running Ubuntu with an NVIDIA RTX 3070 TI GPU with CUDA version 12.4, which allowed efficient processing of images and faster training times. I model trained over 20 epochs using a combination of Adam optimizer and a learning rate scheduler, to improve the model performance from 37% accuracy to 49.5%.
+                
+
+                    The end user, ie, my customer is always in my mind when making my projects. In this case, you, the recruiter was on my mind, and my target wasn't just to make the model, but also make it very easy for you to use it to help you make judgements about me. I really hope I succeeded. 
+                
+
+                    So little details like, making it crystal clear to you about where to click, direct you, is all a part of UX design, and then writing this piece of HTML that you're reading, choosing the right font so its a pleasure to read, containerising and deploying this Django based Website, everything is done by me.
+                
+
+
+
+
+
+Model Can Classify the Following Skin Diseases
+
+
+Cancerous Conditions:
+
+Melanoma: A serious form of skin cancer that originates in the melanocytes, the cells that produce pigment.
+Basal Cell Carcinoma: The most common type of skin cancer, arising from the basal cells in the epidermis.
+Squamous Cell Carcinoma: A type of skin cancer that arises from squamous cells, which are flat cells in the outer part of the epidermis.
+
+Pre-cancerous Condition:
+
+Actinic Keratosis: A rough, scaly patch on the skin caused by years of sun exposure. It can sometimes progress to squamous cell carcinoma if left untreated.
+
+Benign (Non-cancerous) Conditions:
+
+Nevus (Mole): A benign growth of melanocytes, which can occasionally turn into melanoma but are generally non-cancerous.
+Seborrheic Keratosis: A common non-cancerous skin growth that often appears in older adults. It has a waxy, wart-like appearance.
+Dermatofibroma: A benign, fibrous skin nodule, often found on the lower legs.
+Pigmented Benign Keratosis: Similar to seborrheic keratosis, it’s a benign skin growth that has a pigmented appearance.
+Vascular Lesion: These are benign growths or anomalies of blood vessels, like hemangiomas, and are generally not cancerous.
+
+
+
+
+
+
+
+Twitter
+Facebook
+Instagram
+GitHub
+Email
+
+
+© Dispersed ConnectionDesign: HTML5 UP
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,121 @@
+
+
+
+
+Sleep Cycle Prediction - Dispersed Connection
+
+
+
+
+
+
+
+
+
+Sleep Cycle Prediction
+Predict your sleep quality based on lifestyle inputs.
+
+
+
+
+
+
+Your Lifestyle Details Please, so i can rate your sleep quality out of 10!
+
+
+
+
+
+Age
+
+
+
+Gender
+
+Select Gender
+Male
+Female
+
+
+
+Occupation
+
+Select Occupation
+Engineer
+Doctor
+Teacher
+Artist
+Other
+
+
+
+BMI Category
+
+Select BMI Category
+Underweight
+Normal
+Overweight
+Obese
+
+
+
+Sleep Disorder
+
+Select Sleep Disorder
+Yes
+No
+
+
+
+Blood Pressure
+
+Select Blood Pressure
+120/80
+130/90
+140/90
+150/100
+160/100
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+About the Sleep Cycle Prediction Model
+
+
+                    This model uses a Random Forest Regressor to predict the quality of sleep based on various lifestyle factors such as blood pressure, BMI category, and occupation. The model was trained on a dataset with multiple features, and it achieved a good balance of prediction accuracy.
+                
+
+
+
+
+
+Twitter
+Facebook">
+Instagram">
+GitHub">
+Email">
+
+
+© Dispersed ConnectionDesign: HTML5 UP
+
+
+
+
+
+
+
+
+
+
+
