@@ -27,9 +27,19 @@ if ! docker ps | grep -q dispersed-connection; then
     exit 1
 fi
 
+# Detect docker compose command (v2 uses 'docker compose', v1 uses 'docker-compose')
+if docker compose version &> /dev/null; then
+    COMPOSE_CMD="docker compose"
+elif command -v docker-compose &> /dev/null; then
+    COMPOSE_CMD="docker-compose"
+else
+    echo "ERROR: Docker Compose not found!"
+    exit 1
+fi
+
 echo "Step 1: Restarting container to load environment variables..."
-docker-compose down
-docker-compose up -d
+$COMPOSE_CMD down
+$COMPOSE_CMD up -d
 
 echo ""
 echo "Step 2: Waiting for container to start..."

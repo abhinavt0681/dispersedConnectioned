@@ -1,8 +1,6 @@
 server {
     listen 80;
-
-    # Certbot will update this automatically when SSL is configured
-    server_name _;  # Default catch-all, will be updated by Certbot
+    server_name dispersedconnection.com www.dispersedconnection.com;
 
     location / {
         proxy_pass http://127.0.0.1:8000;

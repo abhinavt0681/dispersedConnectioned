@@ -6,6 +6,10 @@ service nginx start
 # Check if domain is provided via environment variable, otherwise skip SSL
 if [ -n "$DOMAIN_NAME" ] && [ -n "$SSL_EMAIL" ]; then
     echo "Attempting to obtain SSL certificate for $DOMAIN_NAME..."
+    # Update nginx server_name if it's still the default
+    sed -i "s/server_name _;/server_name $DOMAIN_NAME www.$DOMAIN_NAME;/" /etc/nginx/sites-available/default || true
+    service nginx reload
+    
     # Request SSL certificates via Certbot (non-interactive)
     certbot --nginx -n --agree-tos --email "$SSL_EMAIL" -d "$DOMAIN_NAME" || {
         echo "SSL certificate setup failed. Continuing with HTTP only..."
