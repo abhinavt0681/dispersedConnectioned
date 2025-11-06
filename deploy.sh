@@ -15,10 +15,30 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-# Check if Docker Compose is installed
-if ! command -v docker-compose &> /dev/null; then
-    echo "Docker Compose is not installed. Please install Docker Compose first."
-    exit 1
+# Check if Docker Compose is installed (try both plugin and standalone versions)
+COMPOSE_CMD=""
+if docker compose version &> /dev/null; then
+    COMPOSE_CMD="docker compose"
+elif command -v docker-compose &> /dev/null; then
+    COMPOSE_CMD="docker-compose"
+else
+    echo "Docker Compose is not installed. Installing..."
+    # Install Docker Compose plugin
+    sudo apt-get update
+    sudo apt-get install -y docker-compose-plugin || {
+        echo "Failed to install via apt. Trying standalone installation..."
+        sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+    }
+    # Try again
+    if docker compose version &> /dev/null; then
+        COMPOSE_CMD="docker compose"
+    elif command -v docker-compose &> /dev/null; then
+        COMPOSE_CMD="docker-compose"
+    else
+        echo "Failed to install Docker Compose. Please install manually."
+        exit 1
+    fi
 fi
 
 # Check if user is in docker group or using sudo
@@ -26,11 +46,11 @@ DOCKER_CMD="docker"
 if ! docker ps &> /dev/null; then
     echo "Note: You may need to run this script with sudo or add your user to the docker group"
     DOCKER_CMD="sudo docker"
-fi
-
-COMPOSE_CMD="docker-compose"
-if ! docker-compose version &> /dev/null; then
-    COMPOSE_CMD="sudo docker-compose"
+    if [[ "$COMPOSE_CMD" == "docker compose" ]]; then
+        COMPOSE_CMD="sudo docker compose"
+    else
+        COMPOSE_CMD="sudo docker-compose"
+    fi
 fi
 
 echo ""
