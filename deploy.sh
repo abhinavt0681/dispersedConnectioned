@@ -8,6 +8,15 @@ echo "========================================="
 echo "Dispersed Connection Deployment Script"
 echo "========================================="
 
+# Load .env file if it exists
+if [ -f .env ]; then
+    echo "Loading environment variables from .env file..."
+    export $(cat .env | grep -v '^#' | xargs)
+    echo "DOMAIN_NAME: ${DOMAIN_NAME:-not set}"
+    echo "SSL_EMAIL: ${SSL_EMAIL:-not set}"
+    echo ""
+fi
+
 # Check if Docker is installed
 if ! command -v docker &> /dev/null; then
     echo "Docker is not installed. Please install Docker first."
@@ -83,7 +92,11 @@ echo "  - Main site: http://$(curl -s ifconfig.me || echo 'YOUR_EC2_IP')"
 echo "  - Melanoma API: http://$(curl -s ifconfig.me || echo 'YOUR_EC2_IP'):8001"
 echo "  - Sleep Predictor API: http://$(curl -s ifconfig.me || echo 'YOUR_EC2_IP'):8002"
 echo ""
-echo "To view logs: docker-compose logs -f"
-echo "To stop: docker-compose down"
+echo "To view logs: $COMPOSE_CMD logs -f"
+echo "To view SSL setup logs: $COMPOSE_CMD logs dispersed-connection | grep -i ssl"
+echo "To stop: $COMPOSE_CMD down"
+echo ""
+echo "If SSL didn't install, check logs and run manually:"
+echo "  docker exec dispersed-connection certbot --nginx -n --agree-tos --email \$SSL_EMAIL -d \$DOMAIN_NAME"
 echo ""
 
