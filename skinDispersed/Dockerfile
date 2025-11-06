@@ -4,7 +4,10 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install --no-cache-dir fastapi uvicorn torch torchvision pillow python-multipart
+# Install CPU-only PyTorch (much smaller - ~200MB vs ~2GB+ with CUDA)
+# Since the model uses map_location=torch.device('cpu'), we don't need CUDA
+RUN pip install --no-cache-dir fastapi uvicorn pillow python-multipart && \
+    pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu
 
 EXPOSE 8000
 
