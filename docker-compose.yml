@@ -13,9 +13,13 @@ services:
     environment:
       - DOMAIN_NAME=${DOMAIN_NAME:-}
       - SSL_EMAIL=${SSL_EMAIL:-}
+      - DJANGO_DB_PATH=${DJANGO_DB_PATH:-/data/db.sqlite3}
+      - DJANGO_MEDIA_ROOT=${DJANGO_MEDIA_ROOT:-/data/media}
     depends_on:
       - melanoma-detector
       - sleep-cycle-predictor
+    volumes:
+      - ${DATA_VOLUME_PATH:-./dispersedconnection/data}:/data
 
   melanoma-detector:
     build: 
@@ -38,4 +42,3 @@ services:
 networks:
   dispersedconnection-network:
     driver: bridge
-

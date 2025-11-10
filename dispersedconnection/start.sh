@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Ensure directories for DB/media exist when mapped via volumes
+if [ -n "$DJANGO_DB_PATH" ]; then
+    mkdir -p "$(dirname "$DJANGO_DB_PATH")"
+fi
+
+if [ -n "$DJANGO_MEDIA_ROOT" ]; then
+    mkdir -p "$DJANGO_MEDIA_ROOT"
+fi
+
 # Start Nginx to respond to the HTTP-01 challenge for Certbot
 service nginx start
 
