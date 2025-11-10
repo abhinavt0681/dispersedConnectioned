@@ -1,0 +1,61 @@
+{% extends "blog/base_blog.html" %}
+
+{% block title %}Blog · Dispersed Connection{% endblock %}
+
+{% block content %}
+<section class="blog-hero">
+    <p class="eyebrow">Latest ramblings</p>
+    <h1>Ship logs, ML experiments &amp; infrastructure notes.</h1>
+    <form method="get" class="blog-search">
+        <input type="search" name="q" value="{{ search_term }}" placeholder="Search architecture notes, GPU tinkering, sleep science…">
+        <button type="submit">Search</button>
+    </form>
+    {% if categories %}
+    <div class="blog-chips">
+        <a href="?" class="chip {% if not category_filter %}active{% endif %}">All</a>
+        {% for category in categories %}
+            <a href="?category={{ category|urlencode }}" class="chip {% if category_filter == category %}active{% endif %}">{{ category }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</section>
+
+{% if featured_post %}
+<section class="featured-post">
+    <div class="featured-post__media"{% if featured_post.hero_image %} style="background-image: url('{{ featured_post.hero_image.url }}');"{% endif %}></div>
+    <div class="featured-post__body">
+        <p class="eyebrow">Featured</p>
+        <h2>{{ featured_post.title }}</h2>
+        <p>{{ featured_post.excerpt|default:featured_post.subtitle }}</p>
+        <div class="featured-meta">
+            <span>{{ featured_post.published_at|date:"M d, Y" }}</span>
+            <span>•</span>
+            <span>{{ featured_post.reading_time_minutes }} min read</span>
+        </div>
+        <a class="button" href="{{ featured_post.get_absolute_url }}">Dive in</a>
+    </div>
+</section>
+{% endif %}
+
+<section class="post-grid">
+    {% for post in posts %}
+    <article class="post-card">
+        {% if post.hero_image %}
+            <div class="post-card__image" style="background-image: url('{{ post.hero_image.url }}');"></div>
+        {% endif %}
+        <div class="post-card__body">
+            <p class="eyebrow">{{ post.category|default:"Notes" }} • {{ post.published_at|date:"M d" }}</p>
+            <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+            <p>{{ post.excerpt|default:post.subtitle|truncatechars:160 }}</p>
+            <div class="post-card__meta">
+                <span>{{ post.reading_time_minutes }} min read</span>
+                <span>·</span>
+                <span>❤️ {{ post.likes_count }}</span>
+            </div>
+        </div>
+    </article>
+    {% empty %}
+        <p>No posts yet—coming soon.</p>
+    {% endfor %}
+</section>
+{% endblock %}

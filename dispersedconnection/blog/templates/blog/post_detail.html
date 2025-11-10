@@ -1,0 +1,54 @@
+{% extends "blog/base_blog.html" %}
+{% load static %}
+
+{% block title %}{{ post.title }} · Dispersed Connection{% endblock %}
+
+{% block content %}
+<article class="blog-article" data-slug="{{ post.slug }}">
+    <header class="article-hero" {% if post.hero_image %}style="background-image:url('{{ post.hero_image.url }}')"{% endif %}>
+        <div class="article-hero__overlay"></div>
+        <div class="article-hero__content">
+            <p class="eyebrow">{{ post.category|default:"Field notes" }}</p>
+            <h1>{{ post.title }}</h1>
+            {% if post.subtitle %}<p class="subtitle">{{ post.subtitle }}</p>{% endif %}
+            <div class="hero-meta">
+                <span>{{ post.published_at|date:"M d, Y" }}</span>
+                <span>•</span>
+                <span>{{ post.reading_time_minutes }} min read</span>
+                <span>•</span>
+                <span id="likeCount">{{ post.likes_count }} likes</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="article-actions">
+        <button class="like-button" data-like-url="{% url 'blog:like' slug=post.slug %}">
+            <span>❤️</span>
+            <span>Applaud</span>
+        </button>
+        <div class="share-buttons">
+            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri|urlencode }}&text={{ post.title|urlencode }}" target="_blank" rel="noopener">Share on X</a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri|urlencode }}" target="_blank" rel="noopener">Share on LinkedIn</a>
+            <button type="button" class="copy-link" data-url="{{ request.build_absolute_uri }}">Copy Link</button>
+        </div>
+    </div>
+
+    <div class="post-content">
+        {{ post.content|safe }}
+    </div>
+
+    {% if related_posts %}
+    <section class="related-posts">
+        <h2>Related reads</h2>
+        <div class="post-grid">
+            {% for related in related_posts %}
+                <article class="post-card compact">
+                    <h3><a href="{{ related.get_absolute_url }}">{{ related.title }}</a></h3>
+                    <p>{{ related.excerpt|default:related.subtitle|truncatechars:120 }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+</article>
+{% endblock %}

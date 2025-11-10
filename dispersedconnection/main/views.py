@@ -1,15 +1,19 @@
 import requests
+from django.db.utils import OperationalError
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.http import JsonResponse
-import pandas as pd
-import joblib
+
+from blog.models import Post
 
 
 
 # Create your views here.
 def index(request):
-    return render(request, 'main/index.html')
+    try:
+        latest_posts = Post.objects.published()[:3]
+    except OperationalError:
+        latest_posts = []
+    return render(request, 'main/index.html', {"latest_posts": latest_posts})
 
 def contact(request):
     if request.method == 'POST':
@@ -90,5 +94,3 @@ def sleep_cycle_prediction(request):
             })
 
     return render(request, 'main/sleep_cycle_prediction.html')
-
-

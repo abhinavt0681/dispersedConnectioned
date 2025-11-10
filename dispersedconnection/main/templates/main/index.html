@@ -87,10 +87,10 @@
 					</div>
 				  </section>
 				  
-<!-- One -->
-<section id="one" class="main style1">
-	<div class="container">
-		<div class="row gtr-150">
+		<!-- One -->
+		<section id="one" class="main style1">
+			<div class="container">
+				<div class="row gtr-150">
 			<div class="col-6 col-12-medium">
 				<header class="major">
 					
@@ -109,9 +109,42 @@
 			</div>
 		</div>
 		
+		</div>
+	</section>			  
+		  
+<!-- Blog Preview -->
+<section id="blog-preview" class="main style1">
+	<div class="container">
+		<header class="major">
+			<h2>Fresh from the blog</h2>
+			<p>Ship logs that dive deeper into the ML stack, deployments, and design notes.</p>
+		</header>
+		<div class="row gtr-150">
+			{% for post in latest_posts %}
+				<div class="col-4 col-12-medium">
+					<article class="blog-preview-card">
+						{% if post.hero_image %}
+							<div class="blog-preview-card__img" style="background-image: url('{{ post.hero_image.url }}');"></div>
+						{% endif %}
+						<div class="blog-preview-card__body">
+							<p class="eyebrow">{{ post.category|default:"Notes" }} • {{ post.published_at|date:"M d" }}</p>
+							<h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+							<p>{{ post.excerpt|default:post.subtitle|truncatechars:120 }}</p>
+						</div>
+					</article>
+				</div>
+			{% empty %}
+				<p>Blog posts are in the oven—stay tuned.</p>
+			{% endfor %}
+		</div>
+		<footer class="major" style="margin-top: 2rem;">
+			<ul class="actions special">
+				<li><a href="/blog/" class="button">Explore the blog</a></li>
+			</ul>
+		</footer>
 	</div>
-</section>				  
-				  
+</section>
+  
   
 		  
 		  
@@ -129,21 +162,24 @@
 					</div>
 			</section>
 		<!-- Four -->
-			<section id="four" class="main style2 special">
-				<div class="container">
-					<header class="major">
-						<h2>Connect with me!</h2>
-					</header>
-					<p></p>
-					<strong>Abhinav Tyagi </strong><br />
-					683C, Parker Street, Boston 02120 MA
-					<ul class="actions special">
-						<li>abhinavt@bu.edu</li>
-						<li>+1-6175869406</li>
+		<section id="four" class="main style2 special">
+			<div class="container">
+				<header class="major">
+					<h2>Connect with me!</h2>
+				</header>
+				<div class="contact-card">
+					<p class="eyebrow">Always up for a technical chat</p>
+					<h3>Abhinav Tyagi</h3>
+					<p>Boston, Massachusetts</p>
+					<ul>
+						<li><strong>Email:</strong> <a href="mailto:abhinavt@bu.edu">abhinavt@bu.edu</a></li>
+						<li><strong>Phone:</strong> <a href="tel:+16175869406">+1&nbsp;617&nbsp;586&nbsp;9406</a></li>
+						<li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/abhinav-tyagi-201173235/" target="_blank" rel="noopener">Abhinav Tyagi</a></li>
 					</ul>
-
 				</div>
-			</section>
+
+			</div>
+		</section>
 
 		<!-- Footer -->
 			<section id="footer">
@@ -154,9 +190,12 @@
 					<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
 					<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
 				</ul>--->
-				<ul class="copyright">
-					<li>Made by Abhinav Tyagi</li><li><a href="https://github.com/abhinavt0681">Github</a></li>
-				</ul> 
+			<ul class="copyright">
+				<li>&copy; {% now "Y" %} Abhinav Tyagi</li>
+				<li><a href="mailto:abhinavt@bu.edu">abhinavt@bu.edu</a></li>
+				<li><a href="tel:+16175869406">+1&nbsp;617&nbsp;586&nbsp;9406</a></li>
+				<li><a href="https://www.linkedin.com/in/abhinav-tyagi-201173235/" target="_blank" rel="noopener">LinkedIn</a></li>
+			</ul> 
 			</section>
 
 		<!-- Scripts -->

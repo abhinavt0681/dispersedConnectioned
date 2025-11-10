@@ -11,11 +11,11 @@ server {
     }
 
     location /static/ {
-        alias /app/main/static/;
+        alias /app/staticfiles/;
     }
 
     location /media/ {
-        alias /app/main/media/;
+        alias /app/media/;
     }
 
     error_log /var/log/nginx/error.log;

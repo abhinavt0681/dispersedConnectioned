@@ -9,3 +9,62 @@
     background-color: blue; /* Darker shade on hover */
 }
 
+.blog-preview-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(10, 10, 25, 0.12);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-preview-card__img {
+    padding-top: 56%;
+    background-size: cover;
+    background-position: center;
+}
+
+.blog-preview-card__body {
+    padding: 1.5rem;
+}
+
+.blog-preview-card__body h3 {
+    margin-bottom: 0.6rem;
+}
+
+.blog-preview-card__body h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.blog-preview-card__body .eyebrow {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: #888;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 18px;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    color: #1b1f3b;
+}
+
+.contact-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-card li {
+    margin-bottom: 0.5rem;
+}
+
+.contact-card a {
+    color: orangered;
+    text-decoration: none;
+}

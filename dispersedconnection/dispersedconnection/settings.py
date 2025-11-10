@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "main",
+    "blog",
+    "ckeditor",
+    "ckeditor_uploader",
 ]
 
 MIDDLEWARE = [
@@ -121,6 +124,29 @@ STATIC_URL = "static/"
 
 # Specify the directory where static files will be collected
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_CONFIGS = {
+    "default": {
+        "toolbar": "Custom",
+        "toolbar_Custom": [
+            ["Bold", "Italic", "Underline", "Strike", "Blockquote"],
+            ["NumberedList", "BulletedList", "Outdent", "Indent"],
+            ["Link", "Unlink", "Anchor"],
+            ["Image", "Iframe", "Embed", "Table", "HorizontalRule"],
+            ["Format", "Font", "FontSize", "TextColor", "BGColor"],
+            ["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"],
+            ["RemoveFormat", "Source"],
+        ],
+        "extraPlugins": ",".join(["embed", "autoembed", "image2", "uploadimage", "widget"]),
+        "height": 400,
+        "width": "100%",
+    }
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
